@@ -1,10 +1,11 @@
-function formataData(date) {
-  let dataFormatada = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`;
+function formataData() {
+  const dataAtual = new Date();
+  const dataFormatada = `${dataAtual.getHours()}:${dataAtual.getMinutes()}:${dataAtual.getSeconds()}`;
   return dataFormatada;
 }
 
 function novoId(lista) {
-  let id = lista.length++;
+  let id = lista.length + 1;
   return id;
 }
 

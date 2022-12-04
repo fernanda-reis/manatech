@@ -1,14 +1,10 @@
 class Categoria {
   id;
   descricao;
-  postagens = [];
 
-  constructor(id, descricao) {
-    this.id = id;
+  constructor(descricao) {
     this.descricao = descricao;
   }
-
-  cadastrarCategoria() {}
 }
 
 module.exports = Categoria;
