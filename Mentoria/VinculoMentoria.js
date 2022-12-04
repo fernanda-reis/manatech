@@ -1,13 +1,20 @@
-class VinculoMentoria {
-  criarVinculoMentoria(mentoraId, mentoradaId) {
-    const mentora = database.tbMentora.find((m) => m.id == mentoraId);
-    const mentorada = database.tbMentorada.find((n) => n.id == mentoradaId);
+const VinculoMentoriaValidacao = require("./VinculoMentoriaValidacao");
+const { tbMentee, tbMentoras } = require("../database");
 
-    if (!mentora.mentoradas.includes(mentorada)) {
-      mentora.mentoradas.push(mentorada);
-      mentorada.mentoras.push(mentora);
+class VinculoMentoria {
+  #vinculoMentoriaValidacao = new VinculoMentoriaValidacao();
+
+  criarVinculoMentoria(idMentora, idMentee) {
+    const mentora = tbMentoras.find((m) => m.id == idMentora);
+    const mentee = tbMentee.find((n) => n.id == idMentee);
+
+    if (
+      this.#vinculoMentoriaValidacao.validarVinculoMentoria(mentora, mentee)
+    ) {
+      mentora.mentees.push(mentee);
+      mentee.mentoras.push(mentora);
       return `Vínculo de mentoria criado!`;
-    } else return `Vínculo de mentoria já existe!`;
+    } else return `Vínculo não criado.`;
   }
 }
 
