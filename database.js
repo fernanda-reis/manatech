@@ -22,7 +22,7 @@ const tbPostagens = new Array();
 
 const tbMentoras = new Array();
 
-const tbMentoradas = new Array();
+const tbMentee = new Array();
 
 const tbPerfis = [
   {
@@ -40,7 +40,7 @@ module.exports = {
   tbCategorias,
   tbPostagens,
   tbMentoras,
-  tbMentoradas,
+  tbMentee,
   tbPerfis,
   tbHabilidades,
 };
