@@ -12,13 +12,9 @@ class PerfilDbOperacoes {
       tbPerfis.push(perfil);
       listaPerfil.push(perfil);
 
-      return `Perfil da ${perfil.nome} criado!`;
+      console.log(`Perfil da ${perfil.nome} criado!`);
+      return perfil;
     } else return `Perfil inválido.`;
-  }
-
-  buscarPerfilPorId(idPerfil) {
-    const perfil = tbPerfis.find((obj) => obj.id == idPerfil);
-    return perfil;
   }
 }
 

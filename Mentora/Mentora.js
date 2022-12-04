@@ -3,15 +3,13 @@ const Perfil = require("../Perfil/Perfil");
 class Mentora extends Perfil {
   bio;
   cargo;
-  mentoradas = [];
+  mentees = [];
 
-  constructor(nome, localizacao, bio, cargo) {
-    super(nome, localizacao);
+  constructor(nome, localizacao, habilidades, bio, cargo) {
+    super(nome, localizacao, habilidades);
     this.bio = bio;
     this.cargo = cargo;
   }
-
-  cadastrarMentora() {}
 }
 
 module.exports = Mentora;
