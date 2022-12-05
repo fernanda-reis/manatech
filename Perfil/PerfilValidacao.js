@@ -4,7 +4,9 @@ const Perfil = require("./Perfil");
 class PerfilValidacao {
   validarPerfil(perfil) {
     if (perfil instanceof Perfil && perfil.habilidades instanceof Habilidade) {
-      return true;
+      if (perfil.nome.length > 0 && perfil.localizacao.length > 0) {
+        return true;
+      }
     } else return false;
   }
 }
