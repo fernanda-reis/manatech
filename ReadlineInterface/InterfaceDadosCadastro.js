@@ -1,33 +1,52 @@
-const readline = require("readline");
-const interface = readline.createInterface(process.stdin, process.stdout);
+const interface = require("./ReadlineInterface");
+
+const Mentora = require("../Mentora/Mentora");
+const Mentee = require("../Mentee/Mentee");
+const HabilidadeDados = require("../Habilidade/HabilidadeDados");
+const Habilidade = require("../Habilidade/Habilidade");
+const formataHabilidades = require("./InterfaceTextoFormatacao");
+
+const cadastrarPerfil = require("./InterafaceDbOperacoes");
+const interfaceInicial = require("./InterfaceInicial");
+const alerta = require("./InterfaceAlertas");
+const util = require("util");
+const question = util.promisify(interface.question).bind(interface);
+
+let { perfilLogado } = require("../perfilLogado");
 
 function cadastroDePerfil() {
   let dados;
   let retorno;
 
   interface.question(
-    "Escolha um perfil: 1. Mentora 2. Mentee 0. Voltar",
+    `Escolha um perfil: 
+    1. Mentora 
+    2. Mentee 
+    0. Voltar
+    `,
     (input) => {
-      if (input == 1) {
-        dados = receberDadosMentora();
-        retorno = cadastrarMentora(dados);
-
-        if (retorno instanceof Mentora) {
-          perfilLogado = retorno;
-          menuInicial(perfilLogado);
-        } else alertaErro(perfilLogado);
-      } else if (input == 2) {
-        dados = receberDadosMentee();
-        retorno = cadastrarMentee(dados);
-
-        if (retorno instanceof Mentee) {
-          perfilLogado = retorno;
-          menuInicial(perfilLogado);
-        } else alertaErro(perfilLogado);
-      } else if (input == 0) {
-        telaInicial();
-      } else {
-        this.alertaOpcaoInvalida();
+      switch (input) {
+        case "0":
+          interfaceInicial.telaInicial();
+          break;
+        case "1":
+          retorno = cadastrarPerfil.cadastrarMentora(receberDadosMentora());
+          if (retorno instanceof Mentora) {
+            perfilLogado = retorno;
+            interfaceInicial.menuInicial(perfilLogado);
+          } else alerta.alertaErro();
+          break;
+        case "2":
+          retorno = cadastrarPerfil.cadastrarMentee(receberDadosMentee());
+          if (retorno instanceof Mentee) {
+            perfilLogado = retorno;
+            interfaceInicial.menuInicial(perfilLogado);
+          } else alerta.alertaErro();
+          break;
+        default:
+          alerta.alertaOpcaoInvalida();
+          interfaceInicial.telaInicial();
+          break;
       }
     }
   );
@@ -35,9 +54,10 @@ function cadastroDePerfil() {
 
 function receberDadosMentee() {
   const dados = {};
+  console.log("== Cadastro de Perfil ==");
   interface.question("Como prefere ser chamada?", (nome) => {
     dados.nome = nome;
-    interface.question("Onde você mora? (Cidade, Estado)", (localizacao) => {
+    interface.question("Onde você mora? (Cidade, Estado) \n", (localizacao) => {
       dados.localizacao = localizacao;
       dados.habilidades = receberDadosHabilidades();
     });
@@ -47,9 +67,9 @@ function receberDadosMentee() {
 
 function receberDadosMentora() {
   const dados = receberDadosMentee();
-  interface.question("Qual o seu cargo atual?", (cargo) => {
+  interface.question("Qual o seu cargo atual? \n", (cargo) => {
     dados.cargo = cargo;
-    interface.question("Escreva uma breve bio: ", (bio) => {
+    interface.question("Escreva uma breve bio: \n", (bio) => {
       dados.bio = bio;
     });
   });
@@ -58,35 +78,47 @@ function receberDadosMentora() {
 
 function receberDadosHabilidades() {
   const dados = new Array();
-  interface.question(
-    "Quais as suas habilidades? 1. Back-end 2. Front-end 3. Devops",
-    (habilidades) => {
-      let novaHabilidade = null;
-      const listaInput = habilidades.split(",");
+  const textoHabilidades = formataHabilidades();
 
-      for (let habilidade in listaInput) {
-        const tecnologias = receberDadosTecnologias(habilidade);
-        novaHabilidade = new Habilidade(habilidade);
-        novaHabilidade.tecnologias.push(...tecnologias);
-        dados.push(novaHabilidade);
-      }
+  interface.question(
+    "Qual a sua habilidade? \n" + textoHabilidades,
+    (input) => {
+      const habilidadeDados = new HabilidadeDados();
+      const habilidade = habilidadeDados.buscarHabilidadePorId(input);
+      const tecnologias = receberDadosTecnologias(habilidade.descricao);
+      console.log("tecnologias " + tecnologias);
+      dados.push(cadastrarHabilidade(habilidade.descricao, tecnologias));
+      return dados;
     }
   );
-  return dados;
 }
 
 function receberDadosTecnologias(habilidade) {
   const dados = new Array();
+
   interface.question(
-    `Digite as tecnologias nas quais tem conhecimentos em ${habilidade}:`,
+    `Digite as tecnologias nas quais tem conhecimentos em ${habilidade}: \n`,
     (input) => {
       const listaInput = input.split(",");
-      for (let item in listaInput) {
+      console.log(listaInput);
+      listaInput.forEach((item) => {
         dados.push(item);
-      }
+      });
+
+      console.log("return dados " + dados);
+      return dados;
     }
   );
-  return dados;
+}
+
+function cadastrarHabilidade(descricao, tecnologias = []) {
+  let novaHabilidade = new Habilidade(descricao);
+
+  tecnologias.forEach((e) => {
+    novaHabilidade.tecnologias.push(e);
+  });
+
+  return novaHabilidade;
 }
 
 module.exports = cadastroDePerfil;

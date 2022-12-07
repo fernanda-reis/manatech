@@ -1,3 +1,7 @@
+const database = require("../database");
+const PerfilDbOperacoes = require("../Perfil/PerfilDbOperacoes");
+const Mentora = require("../Mentora/Mentora");
+const Mentee = require("../Mentee/Mentee");
 const perfilDb = new PerfilDbOperacoes();
 
 function cadastrarMentora(dadosMentora) {
@@ -19,3 +23,5 @@ function cadastrarMentee(dadosMentee) {
 
   return retorno;
 }
+
+module.exports = { cadastrarMentora, cadastrarMentee };

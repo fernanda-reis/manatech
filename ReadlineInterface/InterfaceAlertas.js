@@ -1,10 +1,13 @@
-const readline = require("readline");
-const interface = readline.createInterface(process.stdin, process.stdout);
+function alertaErro() {
+  console.log();
+}
 
-function alertaErro() {}
+function alertaOpcaoInvalida() {
+  console.log("Opção inválida!");
+}
 
-function alertaOpcaoInvalida() {}
-
-function alertaPerfilNaoEncontrado() {}
+function alertaPerfilNaoEncontrado() {
+  console.log("Perfil não encontrado!");
+}
 
 module.exports = { alertaErro, alertaOpcaoInvalida, alertaPerfilNaoEncontrado };
