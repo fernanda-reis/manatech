@@ -1,13 +1,17 @@
 const PerfilDados = require("../Perfil/PerfilDados");
-const { tbMentee } = require("../database");
+const { tbMentees } = require("../database");
 
 class MenteeDados extends PerfilDados {
-  verMentees() {
-    return super.verPerfis(tbMentee);
+  verPerfis() {
+    return tbMentees;
   }
 
-  verMenteePorId(idMentee) {
-    return super.verPerfilPorId(idMentee, tbMentee);
+  verPerfilPorId(menteeId) {
+    const mentee = tbMentees.find((obj) => obj.id == menteeId);
+
+    if (mentee !== undefined) {
+      return mentee;
+    } else return `Mentee não encontrada.`;
   }
 }
 

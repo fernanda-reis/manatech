@@ -5,9 +5,9 @@ class Perfil {
   data_registro;
   nome;
   localizacao;
-  habilidades = [];
+  habilidades;
 
-  constructor(nome, localizacao, habilidades) {
+  constructor(nome, localizacao, habilidades = { area, tecnologias }) {
     this.data_registro = Utils.formataData();
     this.nome = nome;
     this.localizacao = localizacao;

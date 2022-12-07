@@ -12,7 +12,6 @@ class PerfilDbOperacoes {
       tbPerfis.push(perfil);
       listaPerfil.push(perfil);
 
-      console.log(`Perfil da ${perfil.nome} criado!`);
       return perfil;
     } else return `Perfil inválido.`;
   }

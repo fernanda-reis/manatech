@@ -1,11 +1,10 @@
 class Habilidade {
-  id;
-  descricao;
+  area;
   tecnologias = [];
 
-  constructor(descricao) {
-    this.descricao = descricao;
+  constructor(area, tecnologias) {
+    this.area = area;
+    this.tecnologias = tecnologias;
   }
 }
-
 module.exports = Habilidade;

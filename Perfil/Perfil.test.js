@@ -1,48 +1,47 @@
 const { tbPerfis } = require("../database");
-const Habilidade = require("../Habilidade/Habilidade");
 const Perfil = require("./Perfil");
 const PerfilDbOperacoes = require("./PerfilDbOperacoes");
 const PerfilDados = require("./PerfilDados");
+const Habilidade = require("../Habilidade/Habilidade");
 
 describe("Teste da classe Perfil", () => {
+  const area = { id: 1, descricao: "Back-end" };
+  const tecnologias = ["java", "sql"];
+  const habilidade = new Habilidade(area, tecnologias);
   test("Deve ciar instância de perfil corretamente", () => {
-    const habilidade = new Habilidade("Back-end");
     const perfil = new Perfil("Ana", "SP", habilidade);
 
     expect(perfil).toBeInstanceOf(Perfil);
   });
+
   test("Deve salvar perfil no database", () => {
-    const habilidade = new Habilidade("Back-end");
     const perfil = new Perfil("Ana", "SP", habilidade);
 
     const perfilOperacoes = new PerfilDbOperacoes();
     const resultado = perfilOperacoes.salvarPerfil(perfil, tbPerfis);
 
     expect(resultado instanceof Perfil).toBeTruthy();
-    expect(resultado.id).toEqual(2);
     expect(tbPerfis).toContainEqual(resultado);
   });
 
   test("Deve retornar aviso de perfil inválido e não salvar no database", () => {
-    const perfil = new Perfil("Ana", "SP", "habilidadeInvalida");
-
     const perfilOperacoes = new PerfilDbOperacoes();
-    const resultado = perfilOperacoes.salvarPerfil(perfil, tbPerfis);
+    const resultado = perfilOperacoes.salvarPerfil("perfil invalido", tbPerfis);
 
     expect(resultado instanceof Perfil).toBeFalsy();
     expect(resultado).toEqual("Perfil inválido.");
     expect(tbPerfis).not.toContainEqual(resultado);
   });
 
-  test("Deve retornar os dados de perfil do id buscado", () => {
+  test("Deve retornar os dados do perfil com o id buscado", () => {
     const perfilDados = new PerfilDados();
-    const resultado = perfilDados.verPerfilPorId(1, tbPerfis);
+    const resultado = perfilDados.verPerfilPorId(1);
 
     expect(typeof resultado).toEqual("object");
     expect(resultado.id).toEqual(1);
   });
 
-  test("Deve retornar aviso de usuário não encontrado ao buscar id inválido", () => {
+  test("Deve retornar aviso de perfil não encontrado ao buscar id inválido", () => {
     const perfilDados = new PerfilDados();
     const resultado = perfilDados.verPerfilPorId("a", tbPerfis);
 

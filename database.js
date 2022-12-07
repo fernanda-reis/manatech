@@ -1,38 +1,69 @@
 const Categoria = require("./Categoria/Categoria");
-const Habilidade = require("./Habilidade/Habilidade");
-const Mentora = require("./Mentora/Mentora");
 
-const tbHabilidades = [
-  new Habilidade("1", "Back-end"),
-  new Habilidade("2", "Front-end"),
-  new Habilidade("3", "SQL"),
-  new Habilidade("4", "Devops"),
-  new Habilidade("5", "Empreendedorismo"),
-  new Habilidade("6", "Gestão de TI"),
+let perfilLogado = null;
+
+const tbAreas = [
+  { id: 1, descricao: "Back-end" },
+  { id: 2, descricao: "Front-end" },
+  { id: 3, descricao: "Devops" },
+  { id: 4, descricao: "QA" },
+  { id: 5, descricao: "Empreendedorismo" },
 ];
 
-const tbCategorias = [
-  new Categoria("1", "Dúvidas"),
-  new Categoria("2", "Desabafos"),
-  new Categoria("3", "Eventos"),
-  new Categoria("4", "Geral"),
-];
+const tbCategorias = new Array();
 
 const tbPostagens = new Array();
 
-const tbMentoras = new Array();
+const tbMentoras = [
+  {
+    id: 2,
+    nome: "Fernanda",
+    localizacao: "SP",
+    habilidades: {
+      area: { id: 2, descricao: "Front-end" },
+      tecnologias: ["Javascript, css, html"],
+    },
+    bio: "Uma bio bem legal xxx",
+    cargo: "Dev Junior",
+    mentees: [],
+  },
+];
 
-const tbMentee = new Array();
+const tbMentees = [
+  {
+    id: 1,
+    nome: "Julia",
+    localizacao: "MG",
+    habilidades: {
+      area: { id: 2, descricao: "Back-end" },
+      tecnologias: ["java", "mysql"],
+    },
+    mentoras: [],
+  },
+];
 
 const tbPerfis = [
   {
     id: 1,
+    nome: "Julia",
+    localizacao: "MG",
+    habilidades: {
+      area: { id: 2, descricao: "Back-end" },
+      tecnologias: ["java", "mysql"],
+    },
+    mentoras: [],
+  },
+  {
+    id: 2,
     nome: "Fernanda",
     localizacao: "SP",
     habilidades: {
-      descricao: "Front-end",
+      area: { id: 2, descricao: "Front-end" },
       tecnologias: ["Javascript, css, html"],
     },
+    bio: "Uma bio bem legal xxx",
+    cargo: "Dev Junior",
+    mentees: [],
   },
 ];
 
@@ -40,7 +71,7 @@ module.exports = {
   tbCategorias,
   tbPostagens,
   tbMentoras,
-  tbMentee,
+  tbMentees,
   tbPerfis,
-  tbHabilidades,
+  tbAreas,
 };

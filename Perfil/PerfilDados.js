@@ -1,14 +1,16 @@
+const { tbPerfis } = require("../database");
+
 class PerfilDados {
-  verPerfis(listaPerfil) {
-    return listaPerfil;
+  verPerfis() {
+    return tbPerfis;
   }
 
-  verPerfilPorId(perfilId, listaPerfil) {
-    const perfil = listaPerfil.filter((obj) => {
-      obj.id == perfilId;
-    });
+  verPerfilPorId(perfilId) {
+    const perfil = tbPerfis.find((obj) => obj.id == perfilId);
 
-    return perfil[0];
+    if (perfil !== undefined) {
+      return perfil;
+    } else return `Perfil não encontrado.`;
   }
 }
 
