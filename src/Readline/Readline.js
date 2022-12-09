@@ -28,6 +28,7 @@ function telaInicial() {
     == O que deseja fazer? 
     1. Cadastro de Perfil 
     2. Login 
+    3. Encerrar
     `
   );
 
@@ -37,6 +38,8 @@ function telaInicial() {
       break;
     case "2":
       login();
+      break;
+    case "3":
       break;
     default:
       console.log("Opção inválida!");
