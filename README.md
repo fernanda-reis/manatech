@@ -37,7 +37,7 @@ node index.js
 
 ## Tecnologias necessárias
 
-- node: v16.15.1
+- node: ^16.15.1
 - jest: ^29.3.1
 - readline-sync: ^1.4.10
 
