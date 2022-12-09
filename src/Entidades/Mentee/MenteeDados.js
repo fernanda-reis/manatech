@@ -1,5 +1,5 @@
 const PerfilDados = require("../Perfil/PerfilDados");
-const { tbMentees } = require("../database");
+const { tbMentees } = require("../../../database");
 
 class MenteeDados extends PerfilDados {
   verPerfis() {

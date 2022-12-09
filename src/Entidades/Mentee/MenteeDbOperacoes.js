@@ -1,7 +1,7 @@
-const { tbMentees } = require("../database");
+const { tbMentees } = require("../../../database");
 const PerfilDbOperacoes = require("../Perfil/PerfilDbOperacoes");
-const { novoId } = require("../Utils/Utils");
-const MenteeValidacao = require("./MenteeValidacao");
+const { novoId } = require("../../Utils/Utils");
+const MenteeValidacao = require("../Mentee/MenteeValidacao");
 
 class MenteeDbOperacoes extends PerfilDbOperacoes {
   #menteeValidacao = new MenteeValidacao();

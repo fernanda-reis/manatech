@@ -1,4 +1,4 @@
-const Utils = require("../Utils/Utils");
+const Utils = require("../../Utils/Utils");
 
 class Perfil {
   id;

@@ -1,7 +1,7 @@
-const { tbMentoras } = require("../database");
+const { tbMentoras } = require("../../../database");
 const PerfilDbOperacoes = require("../Perfil/PerfilDbOperacoes");
-const { novoId } = require("../Utils/Utils");
-const MentoraValidacao = require("./MentoraValidacao");
+const { novoId } = require("../../Utils/Utils");
+const MentoraValidacao = require("../Mentora/MentoraValidacao");
 
 class MentoraDbOperacoes extends PerfilDbOperacoes {
   #mentoraValidacao = new MentoraValidacao();

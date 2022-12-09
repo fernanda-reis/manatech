@@ -1,5 +1,5 @@
-const VinculoMentoriaValidacao = require("./VinculoMentoriaValidacao");
-const { tbMentees, tbMentoras } = require("../database");
+const VinculoMentoriaValidacao = require("../VinculoMentoria/VinculoMentoriaValidacao");
+const { tbMentees, tbMentoras } = require("../../../database");
 
 class VinculoMentoria {
   #vinculoMentoriaValidacao = new VinculoMentoriaValidacao();

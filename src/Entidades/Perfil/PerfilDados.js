@@ -1,4 +1,4 @@
-const { tbPerfis } = require("../database");
+const { tbPerfis } = require("../../../database");
 
 class PerfilDados {
   verPerfis() {

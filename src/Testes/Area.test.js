@@ -1,5 +1,5 @@
-const AreaDados = require("../Area/AreaDados");
-const { tbAreas } = require("../database");
+const AreaDados = require("../Entidades/Area/AreaDados");
+const { tbAreas } = require("../../database");
 
 describe("Testes da classe Area", () => {
   const areaDados = new AreaDados();

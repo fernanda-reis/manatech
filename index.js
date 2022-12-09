@@ -1,2 +1,2 @@
-const app = require("./Readline/Readline");
+const app = require("./src/Readline/Readline");
 app();

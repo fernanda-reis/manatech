@@ -1,8 +1,8 @@
-const { tbMentoras, tbPerfis } = require("../database");
-const Mentora = require("../Mentora/Mentora");
-const MentoraDados = require("../Mentora/MentoraDados");
-const Habilidade = require("../Habilidade/Habilidade");
-const MentoraDbOperacoes = require("../Mentora/MentoraDbOperacoes");
+const { tbMentoras, tbPerfis } = require("../../database");
+const Mentora = require("../Entidades/Mentora/Mentora");
+const MentoraDados = require("../Entidades/Mentora/MentoraDados");
+const Habilidade = require("../Entidades/Habilidade/Habilidade");
+const MentoraDbOperacoes = require("../Entidades/Mentora/MentoraDbOperacoes");
 
 describe("Teste da classe Mentora", () => {
   const area = { id: 1, descricao: "Back-end" };

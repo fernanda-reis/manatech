@@ -1,5 +1,4 @@
-const Mentora = require("../Mentora/Mentora");
-const VinculoMentoria = require("../VinculoMentoria/VinculoMentoria");
+const VinculoMentoria = require("../Entidades/VinculoMentoria/VinculoMentoria");
 
 describe("Testes da classe VinculoMentoria", () => {
   const vinculoMentoria = new VinculoMentoria();

@@ -1,6 +1,6 @@
-const { tbPerfis } = require("../database");
-const { novoId } = require("../Utils/Utils");
-const PerfilValidacao = require("./PerfilValidacao");
+const { tbPerfis } = require("../../../database");
+const { novoId } = require("../../Utils/Utils");
+const PerfilValidacao = require("../Perfil/PerfilValidacao");
 
 class PerfilDbOperacoes {
   #perfilValidacao = new PerfilValidacao();

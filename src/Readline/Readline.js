@@ -1,15 +1,15 @@
 const readline = require("readline-sync");
-const AreaFormatacao = require("../Area/AreaFormatacao");
-const AreaDados = require("../Area/AreaDados");
-const Habilidade = require("../Habilidade/Habilidade");
-const Mentora = require("../Mentora/Mentora");
-const MentoraDados = require("../Mentora/MentoraDados");
-const MentoraFormatacao = require("../Mentora/MentoraFormatacao");
-const Mentee = require("../Mentee/Mentee");
-const MenteeDados = require("../Mentee/MenteeDados");
-const MenteeDbOperacoes = require("../Mentee/MenteeDbOperacoes");
-const MentoraDbOperacoes = require("../Mentora/MentoraDbOperacoes");
-const VinculoMentoria = require("../VinculoMentoria/VinculoMentoria");
+const AreaFormatacao = require("../Entidades/Area/AreaFormatacao");
+const AreaDados = require("../Entidades/Area/AreaDados");
+const Habilidade = require("../Entidades/Habilidade/Habilidade");
+const Mentora = require("../Entidades/Mentora/Mentora");
+const MentoraDados = require("../Entidades/Mentora/MentoraDados");
+const MentoraFormatacao = require("../Entidades/Mentora/MentoraFormatacao");
+const Mentee = require("../Entidades/Mentee/Mentee");
+const MenteeDados = require("../Entidades/Mentee/MenteeDados");
+const MenteeDbOperacoes = require("../Entidades/Mentee/MenteeDbOperacoes");
+const MentoraDbOperacoes = require("../Entidades/Mentora/MentoraDbOperacoes");
+const VinculoMentoria = require("../Entidades/VinculoMentoria/VinculoMentoria");
 
 const vinculoMentoria = new VinculoMentoria();
 const menteeDados = new MenteeDados();
@@ -220,7 +220,7 @@ function menuInicial() {
       menuInicial();
       break;
     case "3":
-      //verPostagens();
+      fazerPostagem();
       menuInicial();
       break;
     default:
@@ -293,7 +293,7 @@ function criarVinculo(idMentora) {
 function fazerPostagem() {
   const input = readline.question(
     `
-    == Escolha uma categoria para sua postagem: 
+    == Escolha uma categoria de postagem: 
     1. Geral
     2. Eventos
     3. Duvidas

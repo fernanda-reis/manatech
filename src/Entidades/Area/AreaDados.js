@@ -1,4 +1,4 @@
-const { tbAreas } = require("../database");
+const { tbAreas } = require("../../../database");
 
 class AreaDados {
   listarAreas() {
