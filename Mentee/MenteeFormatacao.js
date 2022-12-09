@@ -1,17 +1,21 @@
+const HabilidadeFormatacao = require("../Habilidade/HabilidadeFormatacao");
+
 class MenteeFormatacao {
+  #habilidadeFormatacao = new HabilidadeFormatacao();
+
   formataMentee(mentee) {
-    return (
+    const retorno =
       mentee.id +
       ". " +
       mentee.nome +
       "(" +
       mentee.localizacao +
-      ")" +
-      " | " +
-      "Habilidades: " +
-      mentee.habilidades +
-      "\n"
-    );
+      ")\n" +
+      this.#habilidadeFormatacao.formataHabilidade(mentee.habilidades) +
+      "\n" +
+      "\n";
+
+    return retorno;
   }
 }
 

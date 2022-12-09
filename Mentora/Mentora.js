@@ -5,8 +5,8 @@ class Mentora extends Perfil {
   cargo;
   mentees = [];
 
-  constructor(nome, localizacao, area, bio, cargo) {
-    super(nome, localizacao, area);
+  constructor(nome, localizacao, habilidades, bio, cargo) {
+    super(nome, localizacao, habilidades);
     this.bio = bio;
     this.cargo = cargo;
   }

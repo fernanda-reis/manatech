@@ -1,8 +1,8 @@
 const { tbMentees, tbPerfis } = require("../database");
-const Mentee = require("./Mentee");
-const PerfilDbOperacoes = require("../Perfil/PerfilDbOperacoes");
-const MenteeDados = require("./MenteeDados");
+const Mentee = require("../Mentee/Mentee");
+const MenteeDados = require("../Mentee/MenteeDados");
 const Habilidade = require("../Habilidade/Habilidade");
+const MenteeDbOperacoes = require("../Mentee/MenteeDbOperacoes");
 
 describe("Teste da classe Mentee", () => {
   const area = { id: 1, descricao: "Back-end" };
@@ -17,20 +17,20 @@ describe("Teste da classe Mentee", () => {
   test("Deve salvar mentee no database", () => {
     const mentee = new Mentee("Ana", "SP", habilidade);
 
-    const perfilOperacoes = new PerfilDbOperacoes();
-    const resultado = perfilOperacoes.salvarPerfil(mentee, tbMentees);
+    const menteeOperacoes = new MenteeDbOperacoes();
+    const resultado = menteeOperacoes.salvarPerfil(mentee);
 
     expect(resultado instanceof Mentee).toBeTruthy();
-    expect(resultado.id).toEqual(tbPerfis.length);
     expect(tbMentees).toContainEqual(resultado);
+    expect(tbPerfis).toContainEqual(resultado);
   });
 
   test("Deve retornar aviso de perfil inválido e não salvar no database", () => {
-    const perfilOperacoes = new PerfilDbOperacoes();
-    const resultado = perfilOperacoes.salvarPerfil("menteeInvalida", tbMentees);
+    const menteeOperacoes = new MenteeDbOperacoes();
+    const resultado = menteeOperacoes.salvarPerfil("mentee");
 
     expect(resultado instanceof Mentee).toBeFalsy();
-    expect(resultado).toEqual("Perfil inválido.");
+    expect(resultado).toEqual("Mentee inválida.");
     expect(tbMentees).not.toContainEqual(resultado);
   });
 

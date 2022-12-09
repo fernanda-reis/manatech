@@ -1,8 +1,8 @@
 const { tbMentoras, tbPerfis } = require("../database");
-const Mentora = require("./Mentora");
-const PerfilDbOperacoes = require("../Perfil/PerfilDbOperacoes");
-const MentoraDados = require("./MentoraDados");
+const Mentora = require("../Mentora/Mentora");
+const MentoraDados = require("../Mentora/MentoraDados");
 const Habilidade = require("../Habilidade/Habilidade");
+const MentoraDbOperacoes = require("../Mentora/MentoraDbOperacoes");
 
 describe("Teste da classe Mentora", () => {
   const area = { id: 1, descricao: "Back-end" };
@@ -29,22 +29,20 @@ describe("Teste da classe Mentora", () => {
       "Engenheira de Software"
     );
 
-    const perfilOperacoes = new PerfilDbOperacoes();
-    const resultado = perfilOperacoes.salvarPerfil(mentora, tbMentoras);
+    const mentoraOperacoes = new MentoraDbOperacoes();
+    const resultado = mentoraOperacoes.salvarPerfil(mentora);
 
     expect(resultado instanceof Mentora).toBeTruthy();
     expect(tbMentoras).toContainEqual(resultado);
+    expect(tbPerfis).toContainEqual(resultado);
   });
 
   test("Deve retornar aviso de perfil inválido e não salvar no database", () => {
-    const perfilOperacoes = new PerfilDbOperacoes();
-    const resultado = perfilOperacoes.salvarPerfil(
-      "mentoraInvalida",
-      tbMentoras
-    );
+    const mentoraOperacoes = new MentoraDbOperacoes();
+    const resultado = mentoraOperacoes.salvarPerfil("mentora");
 
     expect(resultado instanceof Mentora).toBeFalsy();
-    expect(resultado).toEqual("Perfil inválido.");
+    expect(resultado).toEqual("Mentora inválida.");
     expect(tbMentoras).not.toContainEqual(resultado);
   });
 
@@ -73,6 +71,8 @@ describe("Teste da classe Mentora", () => {
     const mentoraDados = new MentoraDados();
     const resultado = mentoraDados.verPerfis();
 
+    console.log(resultado);
     expect(resultado).toEqual(tbMentoras);
+    expect(resultado.length).toEqual(tbMentoras.length);
   });
 });

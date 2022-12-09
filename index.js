@@ -1,7 +1,2 @@
-// const interfaceInicial = require("./ReadlineInterface/InterfaceInicial");
-
-const { tbPerfis } = require("./database");
-
-// interfaceInicial.telaInicial();
-
-console.log(tbPerfis.length);
+const app = require("./Readline/Readline");
+app();

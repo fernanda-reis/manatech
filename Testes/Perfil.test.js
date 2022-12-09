@@ -1,7 +1,7 @@
 const { tbPerfis } = require("../database");
-const Perfil = require("./Perfil");
-const PerfilDbOperacoes = require("./PerfilDbOperacoes");
-const PerfilDados = require("./PerfilDados");
+const Perfil = require("../Perfil/Perfil");
+const PerfilDbOperacoes = require("../Perfil/PerfilDbOperacoes");
+const PerfilDados = require("../Perfil/PerfilDados");
 const Habilidade = require("../Habilidade/Habilidade");
 
 describe("Teste da classe Perfil", () => {

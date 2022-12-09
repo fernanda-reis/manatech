@@ -1,6 +1,10 @@
+const HabilidadeFormatacao = require("../Habilidade/HabilidadeFormatacao");
+
 class MentoraFormatacao {
+  #habilidadeFormatacao = new HabilidadeFormatacao();
+
   formataMentora(mentora) {
-    return (
+    const retorno =
       mentora.id +
       ". " +
       mentora.nome +
@@ -8,14 +12,14 @@ class MentoraFormatacao {
       mentora.cargo +
       " (" +
       mentora.localizacao +
-      ") " +
-      " | " +
-      "Habilidades: " +
-      mentora.habilidades +
+      ")\n" +
+      this.#habilidadeFormatacao.formataHabilidade(mentora.habilidades) +
       "\n" +
       mentora.bio +
-      "\n"
-    );
+      "\n" +
+      "\n";
+
+    return retorno;
   }
 }
 

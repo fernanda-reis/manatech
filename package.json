@@ -1,8 +1,25 @@
 {
+  "name": "manatech",
+  "version": "1.0.0",
+  "main": "database.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernanda-reis/manatech.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fernanda-reis/manatech/issues"
+  },
+  "homepage": "https://github.com/fernanda-reis/manatech#readme",
+  "description": "",
   "devDependencies": {
     "jest": "^29.3.1"
   },
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }

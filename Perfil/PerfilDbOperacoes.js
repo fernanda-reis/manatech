@@ -5,12 +5,11 @@ const PerfilValidacao = require("./PerfilValidacao");
 class PerfilDbOperacoes {
   #perfilValidacao = new PerfilValidacao();
 
-  salvarPerfil(perfil, listaPerfil) {
+  salvarPerfil(perfil) {
     if (this.#perfilValidacao.validarPerfil(perfil)) {
       perfil.id = novoId(tbPerfis);
 
       tbPerfis.push(perfil);
-      listaPerfil.push(perfil);
 
       return perfil;
     } else return `Perfil inválido.`;
