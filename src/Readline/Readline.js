@@ -83,6 +83,7 @@ function cadastrarPerfilMentora() {
   const area = readline.question(
     "\n == Qual a sua area de interesse? \n" + areasDeInteresse
   );
+  let novaArea = areaDados.buscarAreaPorId(area);
 
   const tecnologias = readline.question(
     "\n == Digite as tecnologias que tem conhecimento: "
@@ -93,8 +94,8 @@ function cadastrarPerfilMentora() {
   const cargo = readline.question("\n == Qual o seu cargo atual? ");
   const bio = readline.question("\n == Escreva um poquinho sobre voce: ");
 
-  let habilidade = new Habilidade(area, tecnologiasLista);
-  dadosMentora = new Mentora(nome, localizacao, habilidade, bio, cargo);
+  let novaHabilidade = new Habilidade(novaArea, tecnologiasLista);
+  dadosMentora = new Mentora(nome, localizacao, novaHabilidade, bio, cargo);
 
   const mentoraOperacoes = new MentoraDbOperacoes();
   let retorno = mentoraOperacoes.salvarPerfil(dadosMentora);
@@ -120,14 +121,16 @@ function cadastrarPerfilMentee() {
     "\n == Qual a sua area de interesse? \n" + areasDeInteresse
   );
 
+  let novaArea = areaDados.buscarAreaPorId(area);
+
   const tecnologias = readline.question(
     "\n == Digite as tecnologias que deseja aprofundar: "
   );
 
   let tecnologiasLista = tecnologias.split(",");
 
-  let habilidade = new Habilidade(area, tecnologiasLista);
-  dadosMentee = new Mentee(nome, localizacao, habilidade);
+  let novaHabilidade = new Habilidade(novaArea, tecnologiasLista);
+  dadosMentee = new Mentee(nome, localizacao, novaHabilidade);
 
   const menteeOperacoes = new MenteeDbOperacoes();
   let retorno = menteeOperacoes.salvarPerfil(dadosMentee);
@@ -252,7 +255,7 @@ function buscarMentora() {
     let listaMentoras = mentoraDados.verMentorasPorHabilidade(input);
 
     if (!Array.isArray(listaMentoras)) {
-      console.log(listaMentoras);
+      console.log("\n" + listaMentoras + "\n");
       buscarMentora();
     } else {
       listaMentoras.forEach((m) => {
