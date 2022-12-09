@@ -35,7 +35,7 @@ Rodar a aplicação:
 node index.js
 ```
 
-## Tecnologias necessárias
+## Tecnologias utilizadas
 
 - node: ^16.15.1
 - jest: ^29.3.1
