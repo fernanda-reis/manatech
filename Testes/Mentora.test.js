@@ -71,8 +71,6 @@ describe("Teste da classe Mentora", () => {
     const mentoraDados = new MentoraDados();
     const resultado = mentoraDados.verPerfis();
 
-    console.log(resultado);
     expect(resultado).toEqual(tbMentoras);
-    expect(resultado.length).toEqual(tbMentoras.length);
   });
 });

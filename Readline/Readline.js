@@ -21,11 +21,11 @@ const areasFormator = new AreaFormatacao();
 let perfilLogado = null;
 
 function telaInicial() {
-  console.log("\n == Bem-Vinda ao ManaTech! == \n");
-  let retorno;
+  console.log("\n === Bem-Vinda ao ManaTech! === ");
 
   const input = readline.question(
-    `O que deseja fazer? 
+    `
+    == O que deseja fazer? 
     1. Cadastro de Perfil 
     2. Login 
     `
@@ -43,13 +43,12 @@ function telaInicial() {
       telaInicial();
       break;
   }
-
-  console.log(retorno);
 }
 
 function cadastroDePerfil() {
   const input = readline.question(
-    `\nEscolha um perfil: 
+    `
+    == Escolha um perfil: 
     1. Mentora 
     2. Mentee 
     0. Voltar
@@ -76,23 +75,23 @@ function cadastroDePerfil() {
 function cadastrarPerfilMentora() {
   let dadosMentora;
 
-  const nome = readline.question(`Qual o seu nome? `);
-  const localizacao = readline.question(`Onde voce reside? `);
+  const nome = readline.question("\n == Qual o seu nome: ");
+  const localizacao = readline.question("\n == Onde voce reside? ");
 
   let areasDeInteresse = listarAreas();
 
   const area = readline.question(
-    "\nQual sua area de interesse? \n" + areasDeInteresse
+    "\n == Qual a sua area de interesse? \n" + areasDeInteresse
   );
 
   const tecnologias = readline.question(
-    `Digite as tecnologias que tem conhecimento: `
+    "\n == Digite as tecnologias que tem conhecimento: "
   );
 
   let tecnologiasLista = tecnologias.split(",");
 
-  const cargo = readline.question(`Qual o seu cargo atual? `);
-  const bio = readline.question(`Escreva um pouquinho sobre voce: `);
+  const cargo = readline.question("\n == Qual o seu cargo atual? ");
+  const bio = readline.question("\n == Escreva um poquinho sobre voce: ");
 
   let habilidade = new Habilidade(area, tecnologiasLista);
   dadosMentora = new Mentora(nome, localizacao, habilidade, bio, cargo);
@@ -112,17 +111,17 @@ function cadastrarPerfilMentora() {
 function cadastrarPerfilMentee() {
   let dadosMentee;
 
-  const nome = readline.question(`Qual o seu nome? `);
-  const localizacao = readline.question(`Onde voce reside? `);
+  const nome = readline.question("\n == Qual o seu nome? ");
+  const localizacao = readline.question("\n == Onde voce reside? ");
 
   let areasDeInteresse = listarAreas();
 
   const area = readline.question(
-    "\nQual sua area de interesse? \n" + areasDeInteresse
+    "\n == Qual a sua area de interesse? \n" + areasDeInteresse
   );
 
   const tecnologias = readline.question(
-    `Digite as tecnologias que deseja aprofundar: `
+    "\n == Digite as tecnologias que deseja aprofundar: "
   );
 
   let tecnologiasLista = tecnologias.split(",");
@@ -154,14 +153,15 @@ function listarAreas() {
 
 function login() {
   const perfil = readline.question(
-    `\nQual o seu perfil? 
+    `
+    == Qual o seu perfil? 
     1. Mentora 
     2. Mentee
     `
   );
 
   const nome = readline.question(
-    `Digite seu nome cadastrado ou 0 para voltar: `
+    "\n == Digite seu nome cadastrado ou 0 para voltar: "
   );
 
   let login = null;
@@ -183,7 +183,7 @@ function login() {
       });
       break;
     default:
-      console.log("Opção inválida!");
+      console.log("\nOpção inválida!\n");
       telaInicial();
       break;
   }
@@ -192,14 +192,15 @@ function login() {
     perfilLogado = login;
     menuInicial();
   } else {
-    console.log("Perfil não encontrado.");
+    console.log("\nPerfil não encontrado!\n");
     telaInicial();
   }
 }
 
 function menuInicial() {
   const input = readline.question(
-    `\nBem-vinda ${perfilLogado.nome}! O que deseja fazer? 
+    `
+    Bem-vinda ${perfilLogado.nome}! O que deseja fazer? 
     1. Procurar nova mentora 
     2. Fazer uma postagem 
     3. Ver postagens 
@@ -215,7 +216,7 @@ function menuInicial() {
       buscarMentora();
       break;
     case "2":
-      //fazerPostagem();
+      fazerPostagem();
       menuInicial();
       break;
     case "3":
@@ -223,7 +224,7 @@ function menuInicial() {
       menuInicial();
       break;
     default:
-      console.log("Opção inválida!");
+      console.log("\nOpção inválida!\n");
       menuInicial();
       break;
   }
@@ -233,7 +234,10 @@ function buscarMentora() {
   let areasDeInteresse = listarAreas();
   let retornoMentoras = "\n";
   const input = readline.question(
-    "\n Escolha uma area de interesse: \n0. Todas\n" + areasDeInteresse
+    "\n " +
+      "== Escolha uma area de interesse: \n" +
+      "0. Todas \n" +
+      areasDeInteresse
   );
 
   if (input == "0") {
@@ -261,7 +265,7 @@ function buscarMentora() {
 
 function exibirMentoras(mentoras) {
   const input = readline.question(
-    "\n Escolha uma mentora ou 0 para voltar: \n" + mentoras
+    "\n == Escolha uma mentora ou 0 para voltar: \n" + mentoras
   );
 
   if (input == "0") {
@@ -278,20 +282,40 @@ function criarVinculo(idMentora) {
   );
 
   if (resultado == "Vínculo de mentoria inválido.") {
-    console.log(resultado);
+    console.log("\n" + resultado + "\n");
     buscarMentora();
   } else {
-    console.log(resultado);
+    console.log("\n" + resultado + "\n");
     reiniciar();
   }
 }
 
-function reiniciar() {
-  const input = readline.question("Digite 0 para voltar ao menu.");
+function fazerPostagem() {
+  const input = readline.question(
+    `
+    == Escolha uma categoria para sua postagem: 
+    1. Geral
+    2. Eventos
+    3. Duvidas
+    4. Desabafos
+    0. Voltar
+    `
+  );
+
   if (input == "0") {
     menuInicial();
   } else {
-    console.log("Não tem mais nada aqui, mana");
+    console.log("\n Em construção! Volte mais tarde. \n");
+    menuInicial();
+  }
+}
+
+function reiniciar() {
+  const input = readline.question("\n == Digite 0 para voltar ao menu.\n");
+  if (input == "0") {
+    menuInicial();
+  } else {
+    console.log("\n Não tem mais nada aqui, mana \n ");
     reiniciar();
   }
 }

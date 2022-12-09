@@ -1,7 +1,7 @@
 {
   "name": "manatech",
   "version": "1.0.0",
-  "main": "database.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fernanda-reis/manatech.git"
