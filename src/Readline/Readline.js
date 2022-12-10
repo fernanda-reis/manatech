@@ -40,6 +40,7 @@ function telaInicial() {
       login();
       break;
     case "3":
+      encerrar();
       break;
     default:
       console.log("Opção inválida!");
@@ -223,11 +224,9 @@ function menuInicial() {
       break;
     case "2":
       fazerPostagem();
-      menuInicial();
       break;
     case "3":
       fazerPostagem();
-      menuInicial();
       break;
     default:
       console.log("\nOpção inválida!\n");
@@ -297,23 +296,8 @@ function criarVinculo(idMentora) {
 }
 
 function fazerPostagem() {
-  const input = readline.question(
-    `
-    == Escolha uma categoria de postagem: 
-    1. Geral
-    2. Eventos
-    3. Duvidas
-    4. Desabafos
-    0. Voltar
-    `
-  );
-
-  if (input == "0") {
-    menuInicial();
-  } else {
-    console.log("\n Em construção! Volte mais tarde. \n");
-    menuInicial();
-  }
+  console.log("\n Em construção! Volte mais tarde. \n");
+  menuInicial();
 }
 
 function reiniciar() {
@@ -326,4 +310,7 @@ function reiniciar() {
   }
 }
 
+function encerrar() {
+  console.log("\n Aplicação encerrada. \n");
+}
 module.exports = telaInicial;
